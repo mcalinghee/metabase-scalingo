@@ -20,18 +20,6 @@ METABASE_CLICKHOUSE_PLUGIN_URL="https://github.com/ClickHouse/metabase-clickhous
 
 mkdir -p $METABASE_PLUGINS_DIR
 
-export ENABLE_METABASE_CSV_PLUGIN
-if:IsSet ENABLE_METABASE_CSV_PLUGIN || ENABLE_METABASE_CSV_PLUGIN=""
-
-if [ "${ENABLE_METABASE_CSV_PLUGIN}" == "true" ]
-then
-    echo -n "- Install CSV plugin : "
-    cd $METABASE_PLUGINS_DIR
-    wget $METABASE_CSV_PLUGIN_URL
-    echo "Done"
-fi
-
-
 export ENABLE_METABASE_CLICKHOUSE_PLUGIN
 if:IsSet ENABLE_METABASE_CLICKHOUSE_PLUGIN || ENABLE_METABASE_CLICKHOUSE_PLUGIN=""
 echo "Starting to install Clickhouse plugin"
@@ -40,5 +28,16 @@ then
     echo -n "- Install Clickhouse plugin : "
     cd $METABASE_PLUGINS_DIR
     wget $METABASE_CLICKHOUSE_PLUGIN_URL
+    echo "Done"
+fi
+
+export ENABLE_METABASE_CSV_PLUGIN
+if:IsSet ENABLE_METABASE_CSV_PLUGIN || ENABLE_METABASE_CSV_PLUGIN=""
+
+if [ "${ENABLE_METABASE_CSV_PLUGIN}" == "true" ]
+then
+    echo -n "- Install CSV plugin : "
+    cd $METABASE_PLUGINS_DIR
+    wget $METABASE_CSV_PLUGIN_URL
     echo "Done"
 fi
