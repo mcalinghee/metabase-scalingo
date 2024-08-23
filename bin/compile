@@ -13,7 +13,7 @@ if [ -n "$BUILDPACK_DEBUG" ]; then
   set -x
 fi
 
-
+echo "Starting to install plugins"
 METABASE_PLUGINS_DIR="$1/plugins"
 METABASE_CSV_PLUGIN_URL="https://github.com/Markenson/csv-metabase-driver/releases/download/v1.3.1/csv.metabase-driver.jar"
 METABASE_CLICKHOUSE_PLUGIN_URL="https://github.com/ClickHouse/metabase-clickhouse-driver/releases/download/1.50.5/clickhouse.metabase-driver.jar"
@@ -31,9 +31,10 @@ then
     echo "Done"
 fi
 
+
 export ENABLE_METABASE_CLICKHOUSE_PLUGIN
 if:IsSet ENABLE_METABASE_CLICKHOUSE_PLUGIN || ENABLE_METABASE_CLICKHOUSE_PLUGIN=""
-
+echo "Starting to install Clickhouse plugin"
 if [ "${ENABLE_METABASE_CLICKHOUSE_PLUGIN}" == "true" ]
 then
     echo -n "- Install Clickhouse plugin : "
